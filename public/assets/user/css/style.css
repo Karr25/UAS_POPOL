@@ -1,0 +1,19 @@
+.btncostume {
+    background: #2c3e50;
+    color: white;
+}
+sup {
+    color: red;
+}
+.border1 {
+    border: thin solid;
+}
+
+.costum {
+    background: white;
+    border: thin solid #fff;
+}
+
+.masthead .masthead-avatar {
+    width: 8rem !important;
+}
