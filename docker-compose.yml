@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_app
+    restart: always
+    working_dir: /var/www/html
+    ports:
+      - "8000:8000" # Laravel akan diakses di http://localhost:8000
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - mysql
+    environment:
+      APP_KEY: base64:WvE0CNMdRhOwiUKz5gLXSCC4zuf/x4GNHbi0xinnJcU=
+      APP_ENV: local
+      APP_DEBUG: true
+      APP_URL: http://localhost
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: db_antrian
+      DB_USERNAME: root
+      DB_PASSWORD: root_password
+
+  mysql:
+    image: mysql:8.0
+    container_name: laravel_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: db_antrian
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: laravel_phpmyadmin
+    restart: always
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "8080:80" # phpMyAdmin akan diakses di http://localhost:8080
+
+volumes:
+  mysql_data:
