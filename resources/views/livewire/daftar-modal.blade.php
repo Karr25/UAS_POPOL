@@ -80,11 +80,12 @@
                         </div>
             
                         <br><br>
-                        <div align="right">
-                        <!-- <a href  >Registrasi</a> -->
+                        <div class="text-right">
+                        <!-- <a href="#">Registrasi</a> -->
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
+                    </div>
+
                     
                     </form>
                 </div>
