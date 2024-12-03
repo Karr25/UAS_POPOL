@@ -11,11 +11,13 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip \
     unzip \
-    nginx \
-    default-mysql-client
+    default-mysql-client \
+    libjpeg-dev \
+    libfreetype6-dev
 
-# Install PHP extensions for Laravel 5.10.0
-RUN docker-php-ext-install \
+# Install PHP extensions
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install \
     pdo_mysql \
     mysqli \
     mbstring \
@@ -41,9 +43,6 @@ RUN php artisan key:generate
 # Clear config and cache
 RUN php artisan config:clear
 RUN php artisan cache:clear
-
-# Configure nginx (optional)
-COPY nginx.conf /etc/nginx/sites-available/default
 
 # Expose port
 EXPOSE 8000
