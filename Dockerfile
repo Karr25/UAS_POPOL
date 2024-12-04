@@ -44,8 +44,8 @@ RUN php artisan key:generate
 RUN php artisan config:clear
 RUN php artisan cache:clear
 
-# Expose port
-EXPOSE 8000
+# Expose port (use default Cloud Run port)
+EXPOSE 9000
 
 # Start Laravel
-CMD php artisan serve --host=0.0.0.0 --port=8000
+CMD php artisan serve --host=0.0.0.0 --port=$PORT
