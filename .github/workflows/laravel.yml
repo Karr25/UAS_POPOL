@@ -51,4 +51,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: karr25/uas-popl:latest
+        tags: karr25/antrian-deploy:latest
